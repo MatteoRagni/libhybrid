@@ -1,0 +1,3 @@
+[submodule "librk4"]
+	path = librk4
+	url = git@github.com:MatteoRagni/librk4.git
