@@ -193,47 +193,21 @@ typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, c
  */
 typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
-#ifndef HYB_JUMP_LOGIC
-#define HYB_JUMP_LOGIC 1 /**< Default jump logic cosiders only the jump set */
-#endif
-#define HYB_JUMP_LOGIC
-#if HYB_JUMP_LOGIC == 1
 /**
- * There are three possible jump logic:
+ * @brief Jump logic implementation
  *
- *  1. Precedence to jump set only (HYB_JUMP_LOGIC defined 1. It is also the default)
- *  2. Precedence on the flow set (HYB_JUMP_LOGIC defined 2)
- *  3. Precedence is establish via random number if flow and jump are both true (HYB_JUMP_LOGIC defined 3)
- *  4. Always flow
- *
- * @param d jump set result
- * @param c flow set result
- * @return the result of the jump logic
+ * There are two possible jump logic implementation:
+ *  1. Precedence on the jump map (default)
+ *  2. Precedence on the flow map
  */
-inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) {
-  return d;
-}
+#ifndef HYB_JUMP_LOGIC
+#define HYB_JUMP_LOGIC 1
 #endif
-#if HYB_JUMP_LOGIC == 2
-inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) {
-  return (!c && d);
-}
+#if HYB_JUMP_LOGIC == 1
+inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) { return d; }
+#elif HYB_JUMP_LOGIC == 2
+inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) { return d && !c; }
 #endif
-#if HYB_JUMP_LOGIC == 3
-#include <time.h>
-#include <stdlib.h>
-extern hyb_bool hyb_seed_init = 0; /**< Flag for seed initialization. Must be done once */
-hyb_bool jump_logic(hyb_bool d, hyb_bool c) {
-  if (!hyb_seed_init)
-    srand(time(NULL));
-
-  return (!c && d) || (c && d && rand());
-}
-#endif
-#if HYB_JUMP_LOGIC == 4
-inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) { return hyb_false; }
-#endif
-
 
 /**
  * @brief Options structure for the hybrid system

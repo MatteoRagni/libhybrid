@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
- 
+
 #include "libhybrid.h"
 
 /**
@@ -30,9 +30,9 @@
  * 2. Check if the jump conditions are respected.
  *     * if jump is requsted, it enters a loop of update until no jump should be performed
  *     * else the execution continues
- * 3. The 
+ * 3. The
  * @param opts pointer to an option structure
- * @param xp next evaluated 
+ * @param xp next evaluated
  * @param tau time as it arrives from the MATLAB engine
  * @param
  */
@@ -40,30 +40,21 @@
 
 hyb_errno hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, hyb_float *x, hyb_float *u, hyb_float **p) {
   double xs = x + 2;
-  
-  hyb_bool loop = hyb_true;
-  while (loop) {
-    loop = hyb_false;
-    #if HYB_JUMP_LOGIC == 1
-      loop = jump_logic(opts->J(t, j, xs, u, p), hyb_true);
-    #endif
-    #if HYB_JUMP_LOGIC == 2 || JUMP_LOGIC == 3
-      loop = jump_logic(opts->J(t, j, xs, u, p), opts->F(t, j, xs, u, p));
-    #endif
-    if (loop) {
-      
-    } else {
-    
+
+  hyb_bool must_jump = hyb_true;
+  while (must_jump) {
+    hyb_bool d = opts->D(x[0], x[1], x + 2, u, p);
+    hyb_bool c = opts->C(x[0], x[1], x + 2, u, p);
+
+    must_jump = jump_logic(d, c);
+    if (must_jump) {
+
     }
   }
-  
-  if (t >= opts->T_horizon)
-    return HYB_TLIMIT;
+
   if (j >= opts->J_horizon)
     return HYB_JLIMIT;
-    
-  
-  
+  if (t >= opts->T_horizon)
+    return HYB_TLIMIT;
+
 }
-
-
