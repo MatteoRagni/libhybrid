@@ -68,7 +68,7 @@ int main() {
   p[0] = (double *)calloc(1, sizeof(double));
   p[1] = (double *)calloc(1, sizeof(double));
   p[0][0] = 1.0;
-  p[0][1] = 0.5;
+  p[1][0] = 0.5;
 
   double step = 0;
   while (step * 1e-3 <= 8.0) {

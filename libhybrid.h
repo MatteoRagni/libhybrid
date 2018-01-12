@@ -23,10 +23,6 @@
 #ifndef LIBHYBRID_H_
 #define LIBHYBRID_H_
 
-#if defined(_MSC_VER)
-#define inline __inline
-#endif
-
 #ifndef HYB_FLOAT_TYPE
 #define HYB_FLOAT_TYPE double /**< Precision defaut is double */
 #endif

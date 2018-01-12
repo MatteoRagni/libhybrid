@@ -26,10 +26,10 @@ hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_flo
 
   opts->Y(y, x[0], x[1], x + 2, u, p);
 
-  if (x[0] >= opts->J_horizon)
-    return HYB_JLIMIT;
-  if (x[1] >= opts->T_horizon)
+  if (x[0] >= opts->T_horizon)
     return HYB_TLIMIT;
+  if (x[1] >= opts->J_horizon)
+    return HYB_JLIMIT;
 
   hyb_bool d = opts->D(x[0], x[1], x + 2, u, p);
   #if HYB_JUMP_LOGIC == 2
