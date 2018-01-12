@@ -42,8 +42,8 @@ typedef HYB_FLOAT_TYPE hyb_float; /**< Precision typedef, used in library */
  * Flow Set function.
  */
 typedef enum hyb_bool {
-  hyb_false = 0; /**< False value */
-  hyb_true = 1; /**< True value */
+  hyb_false = 0, /**< False value */
+  hyb_true /**< True value */
 } hyb_bool;
 
 /**
@@ -191,7 +191,10 @@ typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, c
  * @param p a pointer to arrays of parameters. This allows the compatibility with the
  *          MATLAB System Identification Toolbox
  */
-typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
+typedef hyb_bool (*hyb_flow_set)(hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
+
+
+typedef void (*hyb_out_map)(hyb_float *y, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
 /**
  * @brief Jump logic implementation
@@ -203,18 +206,14 @@ typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, c
 #ifndef HYB_JUMP_LOGIC
 #define HYB_JUMP_LOGIC 1
 #endif
-#if HYB_JUMP_LOGIC == 1
-inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) { return d; }
-#elif HYB_JUMP_LOGIC == 2
-inline hyb_bool jump_logic(hyb_bool d, hyb_bool c) { return d && !c; }
-#endif
 
 /**
  * @brief Options structure for the hybrid system
  */
 typedef struct hyb_opts {
   size_t y_size; /**< Output size */
-  rk4_opts *rk4_o; /**< Discretization options, using Runge Kutta step */
+  size_t x_size; /**< State size */
+  hyb_float Ts; /**< Time step */
   hyb_float T_horizon; /**< Maximum continuous time horizon */
   hyb_float J_horizon; /**< Maximum discrete step horizon */
   hyb_flow_map F; /**< Flow map function pointer */
@@ -224,16 +223,18 @@ typedef struct hyb_opts {
   hyb_flow_set C; /**< Flow set function pointer */
 } hyb_opts;
 
+#define HYB_GET_OPTS(S) ((hyb_opts *)S) /**< Converts the void pointer in option struct pointer. For internal use only */
+#define HYB_SEND_OPTS(S) ((void *)S) /**< Converts the option struct in void pointer. For internal use only */
 
-typedef enum hyb_errno {
+typedef enum hyb_errorcode {
   HYB_SUCCESS = 0, /**< Step seems good! */
   HYB_EMALLOC,     /**< During the step there was an allocation error */
   HYB_NULLPTR,     /**< Reveived a null pointer */
   HYB_GENERIC,     /**< Unknown error generated */
   HYB_TLIMIT,      /**< Reached time limit */
   HYB_JLIMIT,      /**< Reached step limit */
-  HYB_NOJUMP       /**< Invalid jump condition (Both c = 0 and d = 0) */
-} hyb_errno;
+  HYB_NOJUMP       /**< Invalid jump condition (Both c = 0 and d = 0). Not implemented */
+} hyb_errorcode;
 
 /**
  * @brief Hybrid system main loop
@@ -249,9 +250,21 @@ typedef enum hyb_errno {
  * @param tau time as it arrives from the MATLAB engine
  * @param
  */
-hyb_errno hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p);
+hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
-void hyb_jump_map_wrapper(hyb_opts *opts, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p, void *vopts);
-void hyb_flow_map_wrapper(hyb_opts *opts, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p, void *vopts);
+/**
+ * @brief Internal callback for discretization step
+ *
+ * @warning This is for internal use only, do not use directly.
+ * This callback has been implemented in order to respond to rk4_ode
+ * requirements.
+ * @param dx output of the callback
+ * @param tau hybrid time step, is probably different with respect to the evolution time
+ * @param x the current state, contains time and jump state
+ * @param u the current control
+ * @param p the parameter vector of vectors
+ * @param vopts a void pointer for user space, is used for passing by the options struct
+ */
+void hyb_flow_map_wrapper(hyb_float *dx, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p, void *vopts);
 
 #endif /* LIBHYBRID_H_ */

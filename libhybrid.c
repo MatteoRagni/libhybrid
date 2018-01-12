@@ -22,39 +22,43 @@
 
 #include "libhybrid.h"
 
-/**
- * @brief Hybrid system main loop
- *
- * The main loop of the hybrid system performs the following operations:
- * 1. Check if stop criteria is reached
- * 2. Check if the jump conditions are respected.
- *     * if jump is requsted, it enters a loop of update until no jump should be performed
- *     * else the execution continues
- * 3. The
- * @param opts pointer to an option structure
- * @param xp next evaluated
- * @param tau time as it arrives from the MATLAB engine
- * @param
- */
+hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p) {
 
+  opts->Y(y, x[0], x[1], x + 2, u, p);
 
-hyb_errno hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, hyb_float *x, hyb_float *u, hyb_float **p) {
-  double xs = x + 2;
-
-  hyb_bool must_jump = hyb_true;
-  while (must_jump) {
-    hyb_bool d = opts->D(x[0], x[1], x + 2, u, p);
-    hyb_bool c = opts->C(x[0], x[1], x + 2, u, p);
-
-    must_jump = jump_logic(d, c);
-    if (must_jump) {
-
-    }
-  }
-
-  if (j >= opts->J_horizon)
+  if (x[0] >= opts->J_horizon)
     return HYB_JLIMIT;
-  if (t >= opts->T_horizon)
+  if (x[1] >= opts->T_horizon)
     return HYB_TLIMIT;
 
+  hyb_bool d = opts->D(x[0], x[1], x + 2, u, p);
+  #if HYB_JUMP_LOGIC == 2
+    hyb_bool c = opts->C(x[0], x[1], x + 2, u, p);
+  #endif
+
+  hyb_bool it_jumps;
+  #if HYB_JUMP_LOGIC == 1
+    it_jumps = d;
+  #elif HYB_JUMP_LOGIC == 2
+    it_jumps = d && !c;
+  #endif
+
+  if (it_jumps) {
+    xp[0] = x[0];
+    xp[1] = x[1] + 1.0;
+    opts->J(xp + 2, x[0], x[1], x + 2, u, p);
+  } else {
+    rk4_opts rk4_o = { opts->Ts, (opts->x_size + 2), hyb_flow_map_wrapper };
+    rk4_errorcode rk4_ret = rk4(&rk4_o, xp, tau, x, u, p, HYB_SEND_OPTS(opts));
+    if (rk4_ret) {
+      return (hyb_errorcode)rk4_ret;
+    }
+  }
+  return HYB_SUCCESS;
+}
+
+void hyb_flow_map_wrapper(hyb_float *dx, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p, void *vopts) {
+  dx[0] = 1.0;
+  dx[1] = 0.0;
+  HYB_GET_OPTS(vopts)->F(dx + 2, x[0], x[1], x + 2, u, p);
 }
