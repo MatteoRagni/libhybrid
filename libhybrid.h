@@ -222,7 +222,6 @@ typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, c
  */
 typedef hyb_bool (*hyb_flow_set)(hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
-
 typedef void (*hyb_out_map)(hyb_float *y, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
 /**
