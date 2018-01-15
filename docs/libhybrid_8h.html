@@ -671,12 +671,16 @@ y_size</td>
 <li>The <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">opts</td><td>pointer to an option structure </td></tr>
-    <tr><td class="paramname">xp</td><td>next evaluated </td></tr>
-    <tr><td class="paramname">tau</td><td>time as it arrives from the MATLAB engine </td></tr>
-    <tr><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">y</td><td>vector that will contain the next output. It must be already allocated </td></tr>
+    <tr><td class="paramname">xp</td><td>vector that will contain the next state (already integrated in case of flowing step). It must be already allocated </td></tr>
+    <tr><td class="paramname">tau</td><td>integration engine time </td></tr>
+    <tr><td class="paramname">x</td><td>current state </td></tr>
+    <tr><td class="paramname">u</td><td>current input </td></tr>
+    <tr><td class="paramname">p</td><td>parameter vector </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>an exit codes, as described in hyb_errorcode </dd></dl>
 </li>
 </ol>
 

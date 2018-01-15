@@ -40,8 +40,8 @@
  *    j^+(\tau)    = &  j + 1      & \\
  *    x^+(\tau)    = & g(t, j, x, u, p)  & \\
  *  \f}
- *  \f{
- *    y = h(x, u, p)
+ *  \f{align}
+ *    y = & h(x, u, p)
  *  \f}
  * where:
  *  * \f$ f \f$ is the flow map;
