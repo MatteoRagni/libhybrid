@@ -26,10 +26,37 @@
 #include "mex.h"
 #include "model.c" /**< Please provide your model in this C file. Also include the struct with the name "options" */
 
+/**
+ * @brief MATLAB System Identification wrapper and common wrapper are different
+ *
+ * The System Identification Wrapper and the common wrapper are different. The
+ * normal wrapper returns for each step, and it does not matter if the step is a
+ * either flow step or jump step. In the System Identification wrapper the function
+ * returns only in case of flow step. If there is more than one jump step it is
+ * not reported to the MATLAB engine. This forces the user to carefully decide
+ * which Jump Horizon to use. Reaching an horizon forces the raise of an error.
+ * This wrapper separation allows to keep always the flow time state synchronized with
+ * the System Identification sim time.
+ * This avoid the insertion of a delay \f$ e^{-T_s s} \f$ for each jump in the
+ * flow dynamic.
+ * For the System identification wrapper, simply define MATLAB_SYSTEM_IDENTIFICATION.
+ * If MATLAB_SYSTEM_IDENTIFICATION is not defined, the common wrapper is generated.
+ */
+#define MATLAB_SYSTEM_IDENTIFICATION
+
 
 #if defined(_MSC_VER)
-#define inline __inline
+#define inline __inline /**< For compatibility with Microsoft Compiler */
 #endif
+
+/**
+ * @brief handler for errors from hyb_main_loop function
+ *
+ * This function handles the error code from the hyb_main_loop function.
+ * Any returning value different from HYB_SUCCESS raises a mexErrMsgIdAndTxt
+ * with a convenient error message.
+ * @param c the error code from the hyb_main_loop function
+ */
 inline void error_message(hyb_errorcode c) {
   switch(ret) {
   case HYB_SUCCESS:
@@ -63,7 +90,17 @@ inline void error_message(hyb_errorcode c) {
 }
 
 
-
+/**
+ * @brief Entry point for MATLAB Api
+ *
+ * The compilation and linking of a mex function generates a shared object that
+ * is dynamically loaded in MATLAB. The entry point for such library is the
+ * function mexFunction that is always called with the following arguments:
+ * @param nlhs number of elements in the pointer for the output (lhs = left hand side)
+ * @param plhs pointer for data in the left hand side
+ * @param nrhs number of elements in the pointer for the input arguments (rhs = right hand side)
+ * @param prhs pointer for input data for the function
+ */
 void mexFunction(int nlhs, mxArray *plhs[],
                  int nrhs, const mxArray *prhs[]) {
   /* Declaration of input and output arguments. */
@@ -73,7 +110,7 @@ void mexFunction(int nlhs, mxArray *plhs[],
 
   if (nrhs < 3) {
       mexErrMsgIdAndTxt("LIBHYBRID:Model:InvalidSyntax",
-      "At least 3 inputs expected (t, u, x).");
+      "At least 4 inputs expected (t, u, x, p).");
   }
 
   np = nrhs - 3;
@@ -102,11 +139,11 @@ void mexFunction(int nlhs, mxArray *plhs[],
   xp      = mxGetPr(plhs[0]); /* State derivative values. */
   y       = mxGetPr(plhs[1]); /* Output values. */
 
-  #ifdef SYSTEM_IDENTIFICATION
-  double repeat = x[1];
-  xp[1] = x[1];
-  while (x[1] == xp[1]) {
+  #ifdef MATLAB_SYSTEM_IDENTIFICATION
+  hyb_bool is_step = hyb_true;
+  while (is_step) {
     hyb_errorcode ret = hyb_main_loop(&options, y, xp, sim_time[0], x, u, (const double**) p);
+    is_step = (xp[1] == x[1] ? hyb_false : hyb_true);
     error_message(ret);
   }
   #else

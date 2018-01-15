@@ -23,6 +23,37 @@
 #ifndef LIBHYBRID_H_
 #define LIBHYBRID_H_
 
+/**
+ * @mainpage
+ * @author Matteo Ragni, Matteo Cocetti
+ * @date 4 Jan 2018
+ *
+ * This library implements an hybrid system in the form:
+ *
+ *  \f{eqnarray}
+ *    \dot{\tau} & = 1          & \text{for } (\tau, j, x, u) \in C \\
+ *    \dot{j}    & = 0          & \\
+ *    \dot{x}    & = f(x, u, p) & \\
+ *  \f{eqnarray}
+ *  \f{eqnarray}
+ *    \tau^+     & = \tau       & \text{for } (\tau, j, x, u) \in D \\
+ *    j^+        & = j + 1      & \\
+ *    x^+        & = g(x, u, p) & \\
+ *  \f{eqnarray}
+ *  \f{
+ *    y = h(x, u, p)
+ *  \f}
+ * where:
+ *  * \f$ f \f$ is the flow map;
+ *  * \f$ g \f$ is the jump map;
+ *  * \f$ h \f$ is the output map;
+ *  * \f$ C \f$ is the flow set;
+ *  * \f$ D \f$ is the jump set.
+ *
+ * The flow map is discretized with an Runge Kutta 4 step. For the evolution of
+ * the system, both \f$ \tau \f$ and \f$ j \f$ are limited by horizons. 
+ */
+
 #ifndef HYB_FLOAT_TYPE
 #define HYB_FLOAT_TYPE double /**< Precision defaut is double */
 #endif
