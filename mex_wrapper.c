@@ -83,7 +83,7 @@
  * @param c the error code from the hyb_main_loop function
  */
 inline void error_message(hyb_errorcode c) {
-  switch(ret) {
+  switch (c) {
   case HYB_SUCCESS:
     return;
     break;
