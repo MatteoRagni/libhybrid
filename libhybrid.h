@@ -30,16 +30,16 @@
  *
  * This library implements an hybrid system in the form:
  *
- *  \f{eqnarray}
- *    \dot{\tau} & = 1          & \text{for } (\tau, j, x, u) \in C \\
- *    \dot{j}    & = 0          & \\
- *    \dot{x}    & = f(x, u, p) & \\
- *  \f{eqnarray}
- *  \f{eqnarray}
- *    \tau^+     & = \tau       & \text{for } (\tau, j, x, u) \in D \\
- *    j^+        & = j + 1      & \\
- *    x^+        & = g(x, u, p) & \\
- *  \f{eqnarray}
+ *  \f{align}
+ *    \dot{t}(\tau) = & 1          & \text{for } (t, j, x, u) \in C \\
+ *    \dot{j}(\tau) = & 0          & \\
+ *    \dot{x}(\tau) = & f(t, j, x, u, p) & \\
+ *  \f}
+ *  \f{align}
+ *    t^+(\tau)    = & t           & \text{for } (t, j, x, u) \in D \\
+ *    j^+(\tau)    = &  j + 1      & \\
+ *    x^+(\tau)    = & g(t, j, x, u, p)  & \\
+ *  \f}
  *  \f{
  *    y = h(x, u, p)
  *  \f}
@@ -49,9 +49,11 @@
  *  * \f$ h \f$ is the output map;
  *  * \f$ C \f$ is the flow set;
  *  * \f$ D \f$ is the jump set.
+ *  * \f$ p \f$ are the function parameters.
+ *  * \f$ \tau \f$ is an engine time for the integration of \f$ t \f$ and \f$ j \f$.
  *
- * The flow map is discretized with an Runge Kutta 4 step. For the evolution of
- * the system, both \f$ \tau \f$ and \f$ j \f$ are limited by horizons. 
+ * The flow map is discretized with a Runge Kutta 4 step. For the evolution of
+ * the system, both \f$ \tau \f$ and \f$ j \f$ are limited by horizons.
  */
 
 #ifndef HYB_FLOAT_TYPE
