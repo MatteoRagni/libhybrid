@@ -17,7 +17,7 @@ where:
  * _C_ is the flow set;
  * _D_ is the jump set.
  * _p_ are parameters.
- * is an engine time for the integration of \f$ t \f$ and \f$ j \f$.
+ * is an engine time for the integration of _t_ and _j_.
 
 The flow map is discretized with a Runge Kutta 4 step. For the evolution of
 the system, both _t_ and _j_ are limited by horizons.
