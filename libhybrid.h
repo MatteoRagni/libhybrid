@@ -275,9 +275,13 @@ typedef enum hyb_errorcode {
  *     * else the execution continues
  * 3. The
  * @param opts pointer to an option structure
- * @param xp next evaluated
- * @param tau time as it arrives from the MATLAB engine
- * @param
+ * @param y vector that will contain the next output. It must be already allocated
+ * @param xp vector that will contain the next state (already integrated in case of flowing step). It must be already allocated
+ * @param tau integration engine time
+ * @param x current state
+ * @param u current input
+ * @param p parameter vector
+ * @return an exit codes, as described in hyb_errorcode
  */
 hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
