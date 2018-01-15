@@ -1,4 +1,4 @@
-# libhybrid - A library for discretized Hysbrid Dynamical Systems
+# libhybrid - A library for discretized Hybrid Dynamical Systems
 
 This library implements an hybrid system in the form:
 
