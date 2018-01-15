@@ -20,6 +20,12 @@
  * SOFTWARE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+/**
+ * @file libhybrid.c
+ * @author Matteo Ragni, Matteo Cocetti
+ * @date 10 Jan 2018
+ */
+
 #include "libhybrid.h"
 
 hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p) {

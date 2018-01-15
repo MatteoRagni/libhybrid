@@ -36,23 +36,193 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+      <li><a href="globals.html"><span>Globals</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">mex_wrapper.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="libhybrid_8h_source.html">libhybrid.h</a>&quot;</code><br />
+<code>#include &quot;mex.h&quot;</code><br />
+</div>
+<p><a href="mex__wrapper_8c_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a201488bb31584594c95d3ae90c19e3cf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mex__wrapper_8c.html#a201488bb31584594c95d3ae90c19e3cf">HYB_MODEL_SOURCE</a>&#160;&#160;&#160;&quot;model.c&quot;</td></tr>
+<tr class="memdesc:a201488bb31584594c95d3ae90c19e3cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">To include the mex wrappe in your project you MUST define MATLAB_WRAPPER.  <a href="#a201488bb31584594c95d3ae90c19e3cf">More...</a><br /></td></tr>
+<tr class="separator:a201488bb31584594c95d3ae90c19e3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0823972e92049e023315fea9c1338209"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mex__wrapper_8c.html#a0823972e92049e023315fea9c1338209">MATLAB_SYSTEM_IDENTIFICATION</a></td></tr>
+<tr class="memdesc:a0823972e92049e023315fea9c1338209"><td class="mdescLeft">&#160;</td><td class="mdescRight">MATLAB System Identification wrapper and common wrapper are different.  <a href="#a0823972e92049e023315fea9c1338209">More...</a><br /></td></tr>
+<tr class="separator:a0823972e92049e023315fea9c1338209"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ae0064333ad3c32a06da112b91f7dc969"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mex__wrapper_8c.html#ae0064333ad3c32a06da112b91f7dc969">error_message</a> (<a class="el" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7">hyb_errorcode</a> c)</td></tr>
+<tr class="memdesc:ae0064333ad3c32a06da112b91f7dc969"><td class="mdescLeft">&#160;</td><td class="mdescRight">handler for errors from hyb_main_loop function  <a href="#ae0064333ad3c32a06da112b91f7dc969">More...</a><br /></td></tr>
+<tr class="separator:ae0064333ad3c32a06da112b91f7dc969"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a215cbfde54f82a3ce599228fc3fce5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mex__wrapper_8c.html#a6a215cbfde54f82a3ce599228fc3fce5">mexFunction</a> (int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])</td></tr>
+<tr class="memdesc:a6a215cbfde54f82a3ce599228fc3fce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Entry point for MATLAB Api.  <a href="#a6a215cbfde54f82a3ce599228fc3fce5">More...</a><br /></td></tr>
+<tr class="separator:a6a215cbfde54f82a3ce599228fc3fce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Matteo Ragni, Matteo Cocetti </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>10 Jan 2018 </dd></dl>
+
+<p>Definition in file <a class="el" href="mex__wrapper_8c_source.html">mex_wrapper.c</a>.</p>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a class="anchor" id="a201488bb31584594c95d3ae90c19e3cf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define HYB_MODEL_SOURCE&#160;&#160;&#160;&quot;model.c&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>To include the mex wrappe in your project you MUST define MATLAB_WRAPPER. </p>
+<p>Name of the model to wrap</p>
+<p>Please provide the name of source of the model to wrap. It will be included in the wrapper for compilation. The model should include <b>at least</b>:</p><ul>
+<li>a flow map function</li>
+<li>a jump map function</li>
+<li>a jump set function</li>
+<li>an output function</li>
+<li>an <a class="el" href="libhybrid_8h.html#structhyb__opts" title="Options structure for the hybrid system. ">hyb_opts</a> structure with the name "options", and all the information set. </li>
+</ul>
+
+<p>Definition at line <a class="el" href="mex__wrapper_8c_source.html#l00049">49</a> of file <a class="el" href="mex__wrapper_8c_source.html">mex_wrapper.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0823972e92049e023315fea9c1338209"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MATLAB_SYSTEM_IDENTIFICATION</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>MATLAB System Identification wrapper and common wrapper are different. </p>
+<p>The System Identification Wrapper and the common wrapper are different. The normal wrapper returns for each step, and it does not matter if the step is a either flow step or jump step. In the System Identification wrapper the function returns only in case of flow step. If there is more than one jump step it is not reported to the MATLAB engine. This forces the user to carefully decide which Jump Horizon to use. Reaching an horizon forces the raise of an error. This wrapper separation allows to keep always the flow time state synchronized with the System Identification sim time. This avoid the insertion of a delay \( e^{-T_s s} \) for each jump in the flow dynamic. For the System identification wrapper, simply define MATLAB_SYSTEM_IDENTIFICATION. If MATLAB_SYSTEM_IDENTIFICATION is not defined, the common wrapper is generated. </p>
+
+<p>Definition at line <a class="el" href="mex__wrapper_8c_source.html#l00070">70</a> of file <a class="el" href="mex__wrapper_8c_source.html">mex_wrapper.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="ae0064333ad3c32a06da112b91f7dc969"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void error_message </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7">hyb_errorcode</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>handler for errors from hyb_main_loop function </p>
+<p>This function handles the error code from the hyb_main_loop function. Any returning value different from HYB_SUCCESS raises a mexErrMsgIdAndTxt with a convenient error message. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">c</td><td>the error code from the hyb_main_loop function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="mex__wrapper_8c_source.html#l00085">85</a> of file <a class="el" href="mex__wrapper_8c_source.html">mex_wrapper.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                                           {</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;  <span class="keywordflow">switch</span>(ret) {</div><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7af7add8a597cd16cd4908d2e6099f9ec3">HYB_SUCCESS</a>:</div><div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">return</span>;</div><div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a3d2353e04cb88c710a7f59a066d0606c">HYB_EMALLOC</a>:</div><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:MallocError&quot;</span>,</div><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;     <span class="stringliteral">&quot;Allocation error in the discretization&quot;</span>);</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a1d7e969edf080473915b79b17998f8a1">HYB_NULLPTR</a>:</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:NullPointer&quot;</span>,</div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;     <span class="stringliteral">&quot;Null pointer passed to the integrator&quot;</span>);</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a885fc932bfa64c3b6d36eb080e3b7373">HYB_TLIMIT</a>:</div><div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:tLimit&quot;</span>,</div><div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;     <span class="stringliteral">&quot;Reached time horizon for hybrid model&quot;</span>);</div><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a9b808f96e27c543f4130af00d9589108">HYB_JLIMIT</a>:</div><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:jLimit&quot;</span>,</div><div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;     <span class="stringliteral">&quot;Reached jump horizon for hybrid model&quot;</span>);</div><div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;  <span class="keywordflow">case</span> <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a950a3cb622dcc2d69e95627307777c49">HYB_NOJUMP</a>:</div><div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:InvalidSet&quot;</span>,</div><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;     <span class="stringliteral">&quot;Invalid set conditions provided&quot;</span>);</div><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  <span class="keywordflow">default</span>:</div><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:GenericError&quot;</span>,</div><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;     <span class="stringliteral">&quot;An unknown error was raised&quot;</span>);</div><div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">break</span>;</div><div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;  }</div><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;}</div><div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7a885fc932bfa64c3b6d36eb080e3b7373"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a885fc932bfa64c3b6d36eb080e3b7373">HYB_TLIMIT</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00263">libhybrid.h:263</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7af7add8a597cd16cd4908d2e6099f9ec3"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7af7add8a597cd16cd4908d2e6099f9ec3">HYB_SUCCESS</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00259">libhybrid.h:259</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7a9b808f96e27c543f4130af00d9589108"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a9b808f96e27c543f4130af00d9589108">HYB_JLIMIT</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00264">libhybrid.h:264</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7a3d2353e04cb88c710a7f59a066d0606c"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a3d2353e04cb88c710a7f59a066d0606c">HYB_EMALLOC</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00260">libhybrid.h:260</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7a1d7e969edf080473915b79b17998f8a1"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a1d7e969edf080473915b79b17998f8a1">HYB_NULLPTR</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00261">libhybrid.h:261</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7a950a3cb622dcc2d69e95627307777c49"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7a950a3cb622dcc2d69e95627307777c49">HYB_NOJUMP</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00265">libhybrid.h:265</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a6a215cbfde54f82a3ce599228fc3fce5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mexFunction </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nlhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mxArray *&#160;</td>
+          <td class="paramname"><em>plhs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nrhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const mxArray *&#160;</td>
+          <td class="paramname"><em>prhs</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Entry point for MATLAB Api. </p>
+<p>The compilation and linking of a mex function generates a shared object that is dynamically loaded in MATLAB. The entry point for such library is the function mexFunction that is always called with the following arguments: </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nlhs</td><td>number of elements in the pointer for the output (lhs = left hand side) </td></tr>
+    <tr><td class="paramname">plhs</td><td>pointer for data in the left hand side </td></tr>
+    <tr><td class="paramname">nrhs</td><td>number of elements in the pointer for the input arguments (rhs = right hand side) </td></tr>
+    <tr><td class="paramname">prhs</td><td>pointer for input data for the function </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="mex__wrapper_8c_source.html#l00129">129</a> of file <a class="el" href="mex__wrapper_8c_source.html">mex_wrapper.c</a>.</p>
+<div class="fragment"><div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                                                  {</div><div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;  <span class="comment">/* Declaration of input and output arguments. */</span></div><div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;  <span class="keywordtype">double</span> *x, *u, **p, *xp, *y, *sim_time;</div><div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;  <span class="keywordtype">int</span>     i, np;</div><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;  <span class="keywordtype">size_t</span>  nu, nx;</div><div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  <span class="keywordflow">if</span> (nrhs &lt; 3) {</div><div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;      mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:InvalidSyntax&quot;</span>,</div><div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;      <span class="stringliteral">&quot;At least 4 inputs expected (t, u, x, p).&quot;</span>);</div><div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;  }</div><div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div><div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;  np = nrhs - 3;</div><div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;  <span class="comment">/* Determine number of inputs and states. */</span></div><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;  nx = mxGetNumberOfElements(prhs[1]); <span class="comment">/* Number of states. */</span></div><div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;  nu = mxGetNumberOfElements(prhs[2]); <span class="comment">/* Number of inputs. */</span></div><div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div><div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;  <span class="keywordflow">if</span> (nx != options.x_size) {</div><div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    mexErrMsgIdAndTxt(<span class="stringliteral">&quot;LIBHYBRID:Model:InvalidSyntax&quot;</span>,</div><div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="stringliteral">&quot;The dimension of input 2 should be %d&quot;</span>, options.x_size);</div><div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;  }</div><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;  <span class="comment">/* Obtain double data pointers from mxArrays. */</span></div><div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;  sim_time = mxGetPr(prhs[0]);  <span class="comment">/* States at time t. */</span></div><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  x = mxGetPr(prhs[1]);  <span class="comment">/* States at time t. */</span></div><div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;  u = mxGetPr(prhs[2]);  <span class="comment">/* Inputs at time t. */</span></div><div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div><div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  p = mxCalloc(np, <span class="keyword">sizeof</span>(<span class="keywordtype">double</span>*));</div><div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;  <span class="keywordflow">for</span> (i = 0; i &lt; np; i++)</div><div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    p[i] = mxGetPr(prhs[3+i]); <span class="comment">/* Parameter arrays. */</span></div><div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div><div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;  <span class="comment">/* Create matrix for the return arguments. */</span></div><div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  plhs[0] = mxCreateDoubleMatrix(nx, 1, mxREAL);</div><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;  plhs[1] = mxCreateDoubleMatrix(options.y_size, 1, mxREAL);</div><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;  xp      = mxGetPr(plhs[0]); <span class="comment">/* State derivative values. */</span></div><div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  y       = mxGetPr(plhs[1]); <span class="comment">/* Output values. */</span></div><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div><div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;<span class="preprocessor">  #ifdef MATLAB_SYSTEM_IDENTIFICATION</span></div><div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  <a class="code" href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065c">hyb_bool</a> is_step = <a class="code" href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065caf0d5b1cd5b6eb4db27120a519785dc7f">hyb_true</a>;</div><div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;  <span class="keywordflow">while</span> (is_step) {</div><div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7">hyb_errorcode</a> ret = <a class="code" href="libhybrid_8h.html#a91d371d9eeee2c4a82ec90848325ce88">hyb_main_loop</a>(&amp;options, y, xp, sim_time[0], x, u, (<span class="keyword">const</span> <span class="keywordtype">double</span>**) p);</div><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    is_step = (xp[1] == x[1] ? <a class="code" href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065caf51b913d38cfe3fc7a3e39bf811c9e74">hyb_false</a> : <a class="code" href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065caf0d5b1cd5b6eb4db27120a519785dc7f">hyb_true</a>);</div><div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <a class="code" href="mex__wrapper_8c.html#ae0064333ad3c32a06da112b91f7dc969">error_message</a>(ret);</div><div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;  }</div><div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">  #else</span></div><div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <a class="code" href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7">hyb_errorcode</a> ret = <a class="code" href="libhybrid_8h.html#a91d371d9eeee2c4a82ec90848325ce88">hyb_main_loop</a>(&amp;options, y, xp, sim_time[0], x, u, (<span class="keyword">const</span> <span class="keywordtype">double</span>**) p);</div><div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <a class="code" href="mex__wrapper_8c.html#ae0064333ad3c32a06da112b91f7dc969">error_message</a>(ret);</div><div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">  #endif</span></div><div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  mxFree(p);</div><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;}</div><div class="ttc" id="libhybrid_8h_html_aaba936ba2f99714b9be923c84abf065caf51b913d38cfe3fc7a3e39bf811c9e74"><div class="ttname"><a href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065caf51b913d38cfe3fc7a3e39bf811c9e74">hyb_false</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00074">libhybrid.h:74</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_aaba936ba2f99714b9be923c84abf065caf0d5b1cd5b6eb4db27120a519785dc7f"><div class="ttname"><a href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065caf0d5b1cd5b6eb4db27120a519785dc7f">hyb_true</a></div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00075">libhybrid.h:75</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a5276e15f1426a75cc8e7be078c66e6c7"><div class="ttname"><a href="libhybrid_8h.html#a5276e15f1426a75cc8e7be078c66e6c7">hyb_errorcode</a></div><div class="ttdeci">hyb_errorcode</div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00258">libhybrid.h:258</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_a91d371d9eeee2c4a82ec90848325ce88"><div class="ttname"><a href="libhybrid_8h.html#a91d371d9eeee2c4a82ec90848325ce88">hyb_main_loop</a></div><div class="ttdeci">hyb_errorcode hyb_main_loop(hyb_opts *opts, hyb_float *y, hyb_float *xp, hyb_float tau, const hyb_float *x, const hyb_float *u, const hyb_float **p)</div><div class="ttdoc">Hybrid system main loop. </div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8c_source.html#l00031">libhybrid.c:31</a></div></div>
+<div class="ttc" id="libhybrid_8h_html_aaba936ba2f99714b9be923c84abf065c"><div class="ttname"><a href="libhybrid_8h.html#aaba936ba2f99714b9be923c84abf065c">hyb_bool</a></div><div class="ttdeci">hyb_bool</div><div class="ttdoc">libhybrid boolean type is actually an enum </div><div class="ttdef"><b>Definition:</b> <a href="libhybrid_8h_source.html#l00073">libhybrid.h:73</a></div></div>
+<div class="ttc" id="mex__wrapper_8c_html_ae0064333ad3c32a06da112b91f7dc969"><div class="ttname"><a href="mex__wrapper_8c.html#ae0064333ad3c32a06da112b91f7dc969">error_message</a></div><div class="ttdeci">void error_message(hyb_errorcode c)</div><div class="ttdoc">handler for errors from hyb_main_loop function </div><div class="ttdef"><b>Definition:</b> <a href="mex__wrapper_8c_source.html#l00085">mex_wrapper.c:85</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

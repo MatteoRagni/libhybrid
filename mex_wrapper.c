@@ -20,11 +20,36 @@
  * SOFTWARE.
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
+ /**
+  * @file mex_wrapper.c
+  * @author Matteo Ragni, Matteo Cocetti
+  * @date 10 Jan 2018
+  */
+
+/**
+ * @brief To include the mex wrappe in your project you MUST define MATLAB_WRAPPER
+ */
 #ifdef MATLAB_WRAPPER
 
 #include "libhybrid.h"
 #include "mex.h"
-#include "model.c" /**< Please provide your model in this C file. Also include the struct with the name "options" */
+
+#ifndef HYB_MODEL_SOURCE
+/**
+ * @brief Name of the model to wrap
+ *
+ * Please provide the name of source of the model to wrap. It will be included
+ * in the wrapper for compilation. The model should include **at least**:
+ *  * a flow map function
+ *  * a jump map function
+ *  * a jump set function
+ *  * an output function
+ *  * an hyb_opts structure with the name "options", and all the information set.
+ */
+#define HYB_MODEL_SOURCE "model.c"
+#endif
+#include HYB_MODEL_SOURCE
+
 
 /**
  * @brief MATLAB System Identification wrapper and common wrapper are different

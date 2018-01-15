@@ -36,8 +36,7 @@
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
     </ul>
   </div>
@@ -48,7 +47,7 @@
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="section author"><dt>Author</dt><dd>Matteo Ragni, Matteo Cocetti </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>4 Jan 2018</dd></dl>
+<dl class="section date"><dt>Date</dt><dd>10 Jan 2018</dd></dl>
 <p>This library implements an hybrid system in the form:</p>
 <p class="formulaDsp">
 \begin{align} \dot{t}(\tau) = &amp; 1 &amp; \text{for } (t, j, x, u) \in C \\ \dot{j}(\tau) = &amp; 0 &amp; \\ \dot{x}(\tau) = &amp; f(t, j, x, u, p) &amp; \\ \end{align}
@@ -68,7 +67,7 @@
 <li>\( p \) are the function parameters.</li>
 <li>\( \tau \) is an engine time for the integration of \( t \) and \( j \).</li>
 </ul>
-<p>The flow map is discretized with a Runge Kutta 4 step. For the evolution of the system, both \( \tau \) and \( j \) are limited by horizons. </p>
+<p>The flow map is discretized with a Runge Kutta 4 step. For the evolution of the system, both \( t \) and \( j \) are limited by horizons. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

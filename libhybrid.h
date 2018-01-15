@@ -26,7 +26,7 @@
 /**
  * @mainpage
  * @author Matteo Ragni, Matteo Cocetti
- * @date 4 Jan 2018
+ * @date 10 Jan 2018
  *
  * This library implements an hybrid system in the form:
  *
@@ -53,7 +53,7 @@
  *  * \f$ \tau \f$ is an engine time for the integration of \f$ t \f$ and \f$ j \f$.
  *
  * The flow map is discretized with a Runge Kutta 4 step. For the evolution of
- * the system, both \f$ \tau \f$ and \f$ j \f$ are limited by horizons.
+ * the system, both \f$ t \f$ and \f$ j \f$ are limited by horizons.
  */
 
 #ifndef HYB_FLOAT_TYPE
