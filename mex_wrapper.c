@@ -144,9 +144,9 @@ void mexFunction(int nlhs, mxArray *plhs[],
   nx = mxGetNumberOfElements(prhs[1]); /* Number of states. */
   nu = mxGetNumberOfElements(prhs[2]); /* Number of inputs. */
 
-  if (nx != options.x_size) {
+  if (nx != options.x_size + 2) {
     mexErrMsgIdAndTxt("LIBHYBRID:Model:InvalidSyntax",
-    "The dimension of input 2 should be %d", options.x_size);
+    "The dimension of input 2 should be %d", options.x_size + 2);
   }
 
   /* Obtain double data pointers from mxArrays. */
@@ -165,12 +165,23 @@ void mexFunction(int nlhs, mxArray *plhs[],
   y       = mxGetPr(plhs[1]); /* Output values. */
 
   #ifdef MATLAB_SYSTEM_IDENTIFICATION
-  hyb_bool is_step = hyb_true;
-  while (is_step) {
-    hyb_errorcode ret = hyb_main_loop(&options, y, xp, sim_time[0], x, u, (const double**) p);
-    is_step = (xp[1] == x[1] ? hyb_false : hyb_true);
-    error_message(ret);
-  }
+    double *z = mxCalloc(options.x_size + 2, sizeof(double));
+    hyb_bool is_step = hyb_true;
+    for(size_t i = 0; i < options.x_size + 2; i++)
+        z[i] = x[i];
+
+    while (is_step) {  
+      hyb_errorcode ret = hyb_main_loop(&options, y, xp, sim_time[0], z, u, (const double**) p);
+      if (z[1] != xp[1]) {
+        for(size_t i = 0; i < options.x_size + 2; i++)
+          z[i] = xp[i];
+        is_step = hyb_true;
+      } else {
+        is_step = hyb_false;
+      }
+      error_message(ret);
+    }
+    mxFree(z);
   #else
     hyb_errorcode ret = hyb_main_loop(&options, y, xp, sim_time[0], x, u, (const double**) p);
     error_message(ret);
