@@ -47,20 +47,26 @@
  * the options in the hyb_opts struct.
  */
 
+#define MODEL_Y_SIZE     1          /**< Output size */
+#define MODEL_X_SIZE     2          /**< State size */
+#define MODEL_TS         1e-3       /**< Integration step */
+#define MODEL_T_HORIZON  30.0       /**< Maximum time horizon */
+#define MODEL_J_HORIZON  30.0       /**< Maximum jump horizon */
+
 /**
  * @brief Flow map for the bouncing ball
  */
 void BouncingBall_flow_map(hyb_float *xdot, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p) {
   xdot[0] = x[1];
-  xdot[1] = -p[1][0];
+  xdot[1] = -p[0][0];
 }
 
 /**
  * @brief Jump map for the bouncing ball
  */
-void BouncingBall_flow_map(hyb_float *xp, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p) {
+void BouncingBall_jump_map(hyb_float *xp, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p) {
    xp[0] = 0;
-   xp[1] = -p[2][0] * x[1];
+   xp[1] = -p[1][0] * x[1];
  }
 
 /**
@@ -99,4 +105,4 @@ hyb_opts options = {
   BouncingBall_out_map,   /**< Output Map */
   BouncingBall_jump_set,  /**< Jump Set */
   BouncingBall_flow_set   /**< Flow Set */
-}
+};

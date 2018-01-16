@@ -62,7 +62,7 @@
 typedef HYB_FLOAT_TYPE hyb_float; /**< Precision typedef, used in library */
 
 #define RK4_FLOAT_TYPE HYB_FLOAT_TYPE /**< Forcing consistent types */
-#include "librk4.h"
+#include "librk4/librk4.h"
 
 /**
  * @brief libhybrid boolean type is actually an enum

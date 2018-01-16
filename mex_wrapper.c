@@ -50,7 +50,6 @@
 #endif
 #include HYB_MODEL_SOURCE
 
-
 /**
  * @brief MATLAB System Identification wrapper and common wrapper are different
  *
@@ -67,7 +66,7 @@
  * For the System identification wrapper, simply define MATLAB_SYSTEM_IDENTIFICATION.
  * If MATLAB_SYSTEM_IDENTIFICATION is not defined, the common wrapper is generated.
  */
-#define MATLAB_SYSTEM_IDENTIFICATION
+// #define MATLAB_SYSTEM_IDENTIFICATION
 
 
 #if defined(_MSC_VER)
@@ -170,7 +169,7 @@ void mexFunction(int nlhs, mxArray *plhs[],
     for(size_t i = 0; i < options.x_size + 2; i++)
         z[i] = x[i];
 
-    while (is_step) {  
+    while (is_step) {
       hyb_errorcode ret = hyb_main_loop(&options, y, xp, sim_time[0], z, u, (const double**) p);
       if (z[1] != xp[1]) {
         for(size_t i = 0; i < options.x_size + 2; i++)
