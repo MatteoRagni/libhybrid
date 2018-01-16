@@ -62,7 +62,7 @@
 typedef HYB_FLOAT_TYPE hyb_float; /**< Precision typedef, used in library */
 
 #define RK4_FLOAT_TYPE HYB_FLOAT_TYPE /**< Forcing consistent types */
-#include "librk4.h"
+#include "librk4/librk4.h"
 
 /**
  * @brief libhybrid boolean type is actually an enum
@@ -221,7 +221,6 @@ typedef hyb_bool (*hyb_jump_set)(hyb_float t, hyb_float j, const hyb_float *x, c
  *          MATLAB System Identification Toolbox
  */
 typedef hyb_bool (*hyb_flow_set)(hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
-
 
 typedef void (*hyb_out_map)(hyb_float *y, hyb_float t, hyb_float j, const hyb_float *x, const hyb_float *u, const hyb_float **p);
 
