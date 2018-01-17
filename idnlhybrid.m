@@ -4,6 +4,8 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   % Argument Parsing
   p = inputParser;
 
+  current_path = sprintf('%s%slibhybrid', pwd(), filesep());
+
   validModelName = @(x) validateattributes(x, {'char'}, {'nonempty'});
   validOrder = @(x) validateattributes(x, {'numeric'}, {'numel', 3});
   validTs = @(x) true; % validateattributes(x, {'numeric'}, {'>', 0});
@@ -16,7 +18,7 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   addRequired(p, 'ts', validTs);
 
   addParameter(p, 'ics', []);
-  addParameter(p, 'path', './libhybrid', validModelName);
+  addParameter(p, 'path', current_path, validModelName);
   addParameter(p, 'jumpLogic', 'D', validJumpCond);
   addParameter(p, 'forceCompile', false, validBool);
 
@@ -103,7 +105,7 @@ function idnlhybrid_compile(model_source, args)
   include_dir_libhybrid = sprintf('-I%s', args.path);
   include_dir_librk4 = sprintf('-I%s/librk4', args.path);
 
-  mex(include_dir_libhybrid, include_dir_librk4, ...
+  mex('-v', include_dir_libhybrid, include_dir_librk4, ...
       '-DMATLAB_WRAPPER', ...
       '-DMATLAB_SYSTEM_IDENTIFICATION', ...
       sprintf('-DHYB_MODEL_SOURCE="\\"%s\\""', model_source), ...
