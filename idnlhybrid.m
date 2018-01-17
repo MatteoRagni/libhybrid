@@ -33,10 +33,27 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
     error('LIBHYBRID:Idnlhybrid:ModelNotFound', 'File %s not found. Must be compiled', source);
   end
 
+  % Fixing intitial conditions and order of the model 
   order_exp = args.order;
   order_exp(3) = order_exp(3) + 2;
   if ~isempty(args.ics)
-    ics_exp = [zeros(1, size(args.ics,2)); zeros(1, size(args.ics,2)); args.ics];
+    if isa(args.ics, 'struct')
+      ics_exp(1).Name = 'Flow Time';
+      ics_exp(1).Value = 0.0;
+      ics_exp(1).Fixed = true;
+
+      ics_exp(2).Name = 'Jump Time';
+      ics_exp(2).Value = 0.0;
+      ics_exp(2).Fixed = true;
+
+      for i = 1:length(args.ics)
+        ics_exp(i + 2) = args.ics(i);
+      end
+    elseif isa(args.ics, 'numeric')
+      ics_exp = [zeros(1, size(args.ics,2)); zeros(1, size(args.ics,2)); args.ics];
+    else
+      error('LIBHYBRID:Idnlhybrid:InitialConditions', 'Unknown initial conditions type');
+    end
   end
   % Creating idnlgrey object with hybrid model
   model = idnlgrey(args.modelname, order_exp, args.params, ics_exp, args.ts);
