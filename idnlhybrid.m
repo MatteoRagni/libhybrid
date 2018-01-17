@@ -40,18 +40,20 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   order_exp(3) = order_exp(3) + 2;
   if ~isempty(args.ics)
     if isa(args.ics, 'struct')
+      exp_size = size(args.ics(1).Value);
+
       ics_exp(1).Name = 'Flow Time';
       ics_exp(1).Unit = 'seconds';
-      ics_exp(1).Value = 0.0;
-      ics_exp(1).Minimum = -inf;
-      ics_exp(1).Maximum = inf;
+      ics_exp(1).Value = zeros(exp_size);
+      ics_exp(1).Minimum = -inf(exp_size);
+      ics_exp(1).Maximum = inf(exp_size);
       ics_exp(1).Fixed = true;
 
       ics_exp(2).Name = 'Jump Time';
       ics_exp(2).Unit = 'jumps';
-      ics_exp(2).Value = 0.0;
-      ics_exp(2).Minimum = -inf;
-      ics_exp(2).Maximum = inf;
+      ics_exp(2).Value = zeros(exp_size);
+      ics_exp(2).Minimum = -inf(exp_size);
+      ics_exp(2).Maximum = inf(exp_size);
       ics_exp(2).Fixed = true;
 
       for i = 1:length(args.ics)
