@@ -4,7 +4,7 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   % Argument Parsing
   p = inputParser;
 
-  current_path = sprintf('%s%slibhybrid', pwd(), filesep());
+  current_path = fullfile(pwd(), 'libhybrid');
 
   validModelName = @(x) validateattributes(x, {'char'}, {'nonempty'});
   validOrder = @(x) validateattributes(x, {'numeric'}, {'numel', 3});
@@ -26,7 +26,7 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   args = p.Results;
 
   % Checking sources and compiling
-  model_source = sprintf('%s.c', args.modelname);
+  model_source = fullfile(pwd(), sprintf('%s.c', args.modelname));
   if idnlhybrid_check_sources(model_source, args) || args.forceCompile
     idnlhybrid_compile(model_source, args);
   end
@@ -41,11 +41,17 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
   if ~isempty(args.ics)
     if isa(args.ics, 'struct')
       ics_exp(1).Name = 'Flow Time';
+      ics_exp(1).Unit = 'seconds';
       ics_exp(1).Value = 0.0;
+      ics_exp(1).Minimum = -inf;
+      ics_exp(1).Maximum = inf;
       ics_exp(1).Fixed = true;
 
       ics_exp(2).Name = 'Jump Time';
+      ics_exp(2).Unit = 'jumps';
       ics_exp(2).Value = 0.0;
+      ics_exp(2).Minimum = -inf;
+      ics_exp(2).Maximum = inf;
       ics_exp(2).Fixed = true;
 
       for i = 1:length(args.ics)
