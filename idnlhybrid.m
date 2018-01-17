@@ -33,7 +33,7 @@ function model = idnlhybrid(modelname, order, params, ts, varargin)
     error('LIBHYBRID:Idnlhybrid:ModelNotFound', 'File %s not found. Must be compiled', source);
   end
 
-  % Fixing intitial conditions and order of the model 
+  % Fixing intitial conditions and order of the model
   order_exp = args.order;
   order_exp(3) = order_exp(3) + 2;
   if ~isempty(args.ics)
@@ -100,7 +100,11 @@ function idnlhybrid_compile(model_source, args)
   source_librk4 = sprintf('%s/librk4/librk4.c', args.path);
   source_libhybrid = sprintf('%s/libhybrid.c', args.path);
   source_mexwrapper = sprintf('%s/mex_wrapper.c', args.path);
-  mex('-DMATLAB_WRAPPER', ...
+  include_dir_libhybrid = sprintf('-I%s', args.path);
+  include_dir_librk4 = sprintf('-I%s/librk4', args.path);
+
+  mex(include_dir_libhybrid, include_dir_librk4, ...
+      '-DMATLAB_WRAPPER', ...
       '-DMATLAB_SYSTEM_IDENTIFICATION', ...
       sprintf('-DHYB_MODEL_SOURCE="\\"%s\\""', model_source), ...
       sprintf('-DHYB_JUMP_LOGIC=%d', jump_logic), ...
